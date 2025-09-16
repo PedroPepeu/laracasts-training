@@ -16,11 +16,16 @@ class Database
 
     public function query($sql, $bindings = [])
     {
-        echo $sql;
-        // echo $bindings[1];
         $stmt = $this->connection->prepare($sql);
         $stmt->execute($bindings);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserId($bindings = [])
+    {
+        $query = "SELECT id FROM users WHERE name = ? AND password = ?";
+        $results = $this->query($query, $bindings);
+        return $results[0]['id'];
     }
 }
 
