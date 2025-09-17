@@ -4,7 +4,6 @@
     use PDO;
     class Database
     {
-
         private PDO $connection;
         
         public function __construct(array $config, $username = 'testuser', $password = '')
@@ -24,9 +23,17 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function checkAccountExists($bindings = [])
+        {
+            $query = "SELECT * FROM users WHERE LOWER(name) = LOWER(?) AND password = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute($bindings);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function checkUserExists($bindings = [])
         {
-            $query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            $query = "SELECT * FROM users WHERE LOWER(name) = LOWER(?)";
             $stmt = $this->connection->prepare($query);
             $stmt->execute($bindings);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -34,15 +41,32 @@
 
         public function getUserId($bindings = [])
         {
-            $query = "SELECT id FROM users WHERE username = ? AND password = ?";
+            $query = "SELECT id FROM users WHERE LOWER(name) = LOWER(?) AND password = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->execute($bindings);
-            return $stmt[0]['id'];
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row ? $row['id'] : null;
+        }
+
+        public function getUserName($bindings = [])
+        {
+            $query = "SELECT name FROM users WHERE id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute($bindings);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row ? $row['name'] : null;
         }
 
         public function createUser($bindings = [])
         {
-            $query = "INSERT INTO users (username, password) VALUES (?, ?)";
+            $query = "INSERT INTO users (name, password) VALUES (?, ?)";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute($bindings);
+        }
+
+        public function createNote($bindings = [])
+        {
+            $query = "INSERT INTO notepads (notepad_owner, text) VALUES (?, ?)";
             $stmt = $this->connection->prepare($query);
             $stmt->execute($bindings);
         }

@@ -1,6 +1,7 @@
 <?php require __DIR__ . '/partials/header.php'; ?>
 <main style="max-width: 960px; margin: 24px auto; padding: 0 16px;">
     <h1 style="margin: 0 0 16px; font-size: 24px; color: #111827;">Home</h1>
+    <h1> <?php echo $username; ?></h1>
     <form action="/home" method="POST" style="display: grid; gap: 12px; max-width: 640px;">
         <label style="display: grid; gap: 6px; color: #111827;">
             <span>Write something</span>

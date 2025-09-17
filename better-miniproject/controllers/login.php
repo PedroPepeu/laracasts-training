@@ -1,5 +1,7 @@
 <?php 
     $session = new \Core\Session('session');
+    $config = require base_path('config.php');
+    $database = new \Core\Database($config);
     if ($session->get('user_id')) {
         header('Location: /home');
     }
@@ -14,7 +16,7 @@
         $password = $_POST['password'] ?? '';
         
         if (!empty($name) && !empty($password)) {
-            if($database->checkUserExists([$name, $password])) {
+            if($database->checkAccountExists([$name, $password])) {
                 $session->set('user_id', $database->getUserId([$name, $password]));
                 header('Location: /home');
             } else {

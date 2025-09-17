@@ -1,5 +1,8 @@
 <?php 
-    $validator = new \Core\Validator();
+    $session = new \Core\Session('session');
+    $config = require base_path('config.php');
+    $database = new \Core\Database($config);
+    $validator = new \Core\Validator($database);
     
     if ($session->get('user_id')) {
         header('Location: /home');
@@ -15,7 +18,7 @@
         $password = $_POST['password'];
         $password_confirmation = $_POST['password_confirmation'];
 
-        if ($validator->validate([$name, $password, $password_confirmation])) {
+        if ($validator->validate(['name' => $name, 'password' => $password, 'password_confirmation' => $password_confirmation])) {
             $database->createUser([$name, $password]);
             // send flash message with the username
             $session->flash('name', $name);

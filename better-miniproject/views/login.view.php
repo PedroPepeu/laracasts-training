@@ -4,7 +4,7 @@
     <form action="/" method="POST" style="display: grid; gap: 12px; max-width: 360px;">
         <label style="display: grid; gap: 6px; color: #111827;">
             <span>Name</span>
-            <input type="text" name="name" required style="padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px;" />
+            <input type="text" name="name" required style="padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px;" value="<?php echo isset($name) ? htmlspecialchars($name, ENT_QUOTES) : ''; ?>" />
         </label>
 
         <label style="display: grid; gap: 6px; color: #111827;">

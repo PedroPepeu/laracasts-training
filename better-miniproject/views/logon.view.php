@@ -4,7 +4,7 @@
     <form action="/logon" method="POST" style="display: grid; gap: 12px; max-width: 420px;">
         <label style="display: grid; gap: 6px; color: #111827;">
             <span>Name</span>
-            <input type="text" name="name" required style="padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px;" />
+            <input type="text" name="name" required style="padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px;" value="<?php echo isset($name) ? htmlspecialchars($name, ENT_QUOTES) : ''; ?>" />
         </label>
 
         <label style="display: grid; gap: 6px; color: #111827;">
@@ -21,5 +21,7 @@
     </form>
 
     <p style="margin-top: 12px; color: #4b5563;">Already have an account? <a href="/" style="color: #111827;">Sign in</a></p>
+
+    <?php echo isset($errors) ? '<p style="color: #dc2626;">' . implode('<br>', $errors) . '</p>' : ''; ?>
 </main>
 
