@@ -11,7 +11,9 @@ class Job extends Model
 
     protected $table = 'job_listing';
 
-    protected $fillable = ['title', 'salary'];
+    // arbitrary
+    // protected $fillable = ['employer_id', 'title', 'salary']; // sometimes it can be disabled, even if it takes to danger places
+    protected $guarded = []; // the fields that must be guarded
 
     public function employer()
     {
