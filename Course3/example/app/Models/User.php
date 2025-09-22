@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Notifiable;
+use Illuminate\Notifications\Notifiable;
 
 // before or after Eloquent(Two Key Eloquent Relationship)
 
@@ -13,7 +13,8 @@ class User extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
