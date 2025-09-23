@@ -9,7 +9,7 @@
             Laravel behind the scenes create an token that will compare, in the post method to an session token, so it can validate that you is you
         --}}
         <div class="space-y-12">
-            <div class="border-b border-white/10 pb-12">
+            <div class="border-b border-black pb-12">
             <h2 class="text-base/7 font-semibold text-white">Create a new Job</h2>
             <p class="mt-1 text-sm/6 text-gray-400">We just need a handful of details from you.</p>
 
@@ -17,7 +17,7 @@
                 <x-form-field>
                     <x-form-label for="title">Title</x-form-label>
                     <div class="mt-2">
-                        <x-form-input id="title" name="title" placeholder="CEO" required/>
+                        <x-form-input id="title" name="title" placeholder="CEO" style="color: black;" required/>
                         <x-form-error name="title"/>
                     </div>
                 </x-form-field>
@@ -25,7 +25,7 @@
                 <x-form-field>
                     <x-form-label for="salary">Salary</x-form-label>
                     <div class="mt-2">
-                        <x-form-input id="salary" name="salary" placeholder="$55,000 per year" required/>
+                        <x-form-input id="salary" name="salary" placeholder="$55,000 per year" style="color: black;" required/>
                         <x-form-error name="salary"/>
                     </div>
                 </x-form-field>

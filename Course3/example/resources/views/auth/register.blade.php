@@ -9,7 +9,7 @@
             Laravel behind the scenes create an token that will compare, in the post method to an session token, so it can validate that you is you
         --}}
         <div class="space-y-12">
-             <div class="border-b border-white/10 pb-12">
+             <div class="border-b pb-12">
             <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <x-form-field>
                     <x-form-label for="first_name">First Name</x-form-label>

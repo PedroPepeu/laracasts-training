@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobPosted;
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -39,22 +45,32 @@ class JobController extends Controller
             'salary' => ['required'],
         ]);
 
-        Job::create([
+        $job = Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
             'employer_id' => 1,
         ]);
+
+        // php artisan queue:work
+        Mail::to($job->employer->user)->queue(
+            new JobPosted($job)
+        );
 
         return redirect('/jobs');
     }
 
     public function edit() 
     {
+        // Auth::user()->can('edit-job');
+        Gate::authorize('edit-job', $job);
+
         return view('jobs.edit', ['job' => $job]);
     }
 
     public function update() 
     {
+        Gate::authorize('edit-job', $job);
+
         // validate
         request()->validate([
             'title' => ['required', 'min:3'],
@@ -81,6 +97,7 @@ class JobController extends Controller
 
     public function destroy() 
     {
+        Gate::authorize('edit-job', $job);
         // authorize (on hold)
         // delete the job
         // Job::findOrFail($id)->delete();
