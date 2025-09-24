@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Notepad;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,10 @@ class NotepadSeeder extends Seeder
      */
     public function run(): void
     {
-        Notepad::factory(50)->create();
+        $users = User::all();
+
+        foreach ($users as $user) {
+            Notepad::factory(10000)->for($user)->create();
+        }
     }
 }
