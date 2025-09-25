@@ -15,26 +15,18 @@
              <div class="border-b pb-12">
             <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <x-form-field>
-                    <x-form-label for="first_name">First Name</x-form-label>
+                    <x-form-label for="name">Full Name</x-form-label>
                     <div class="mt-2">
-                        <x-form-input id="first_name" name="first_name" required/>
-                        <x-form-error name="first_name"/>
+                        <x-form-input id="name" name="name" :value="old('name')" required/>
+                        <x-form-error name="name"/>
                     </div>
                 </x-form-field>
 
                 <x-form-field>
-                    <x-form-label for="last_name">Last Name</x-form-label>
+                    <x-form-label for="email">Email Address</x-form-label>
                     <div class="mt-2">
-                        <x-form-input id="last_name" name="last_name" required/>
-                        <x-form-error name="last_name"/>
-                    </div>
-                </x-form-field>
-
-                <x-form-field>
-                    <x-form-label for="email_address">Email Address</x-form-label>
-                    <div class="mt-2">
-                        <x-form-input id="email_address" name="email_address" type="email" required/>
-                        <x-form-error name="email_address"/>
+                        <x-form-input id="email" name="email" type="email" :value="old('email')" required/>
+                        <x-form-error name="email"/>
                     </div>
                 </x-form-field>
 
@@ -58,8 +50,8 @@
         </div>
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <a href="/" type="button" class="text-sm/6 font-semibold text-white">Cancel</a>
-            <x-form-button>Register</x-form-button>
+            <a href="/" type="button" class="text-sm/6 font-semibold">Cancel</a>
+            <x-button-first :isButton="true" type="submit">Register</x-button-first>
         </div>
     </form>
 </x-layout>

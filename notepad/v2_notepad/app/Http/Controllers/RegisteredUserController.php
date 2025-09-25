@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
@@ -18,26 +19,24 @@ class RegisteredUserController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required', 
-            Password::min(8)
-                ->letters()
-                ->mixedCase()
-                ->numbers()
-                ->symbols()
-                ->uncompromised(),
-            'confimed'],
+            'name' => 'required|min:3|max:255',
+            'email' => 'required|email',
+            'password' => [
+                'required', 
+                'confirmed',
+                Password::min(8)
+                    ->letters()
+                    ->numbers()
+                    // ->mixedCase()
+                    // ->symbols()
+                    // ->uncompromised()
+            ],
         ]);
 
-        $user = User::create([
-            'name' => $attributes['name'],
-            'email' => $attributes['email'],
-            'password' => Hash::make($attributes['password']),
-        ]);
+        $user = User::create($attributes);
 
         Auth::login($user);
 
-        return redirect('/jobs');
+        return redirect('/notepad');
     }
 }

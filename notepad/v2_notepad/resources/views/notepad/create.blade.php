@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:pagetitle>Notepad</x-slot:pagetitle>
     <x-slot:heading>Create Notepad</x-slotheading>
-    <form method="POST" action="/jobs">
+    <form method="POST" action="/notepad">
         @csrf
         {{-- 
             Laravel behind the scenes create an token that will compare, in the post method to an session token, so it can validate that you is you

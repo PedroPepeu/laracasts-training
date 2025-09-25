@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Jobs\ProcessNotepads;
 use App\Models\Notepad;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,7 +18,14 @@ class NotepadSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            Notepad::factory(10000)->for($user)->create();
+            // dispatch(Notepad::factory(1000000)->count(1000)->for($user));
+
+            // ProcessNotepads::dispatch($user->id, 10);
+
+            $chunkSize = 10000;
+            for ($i = 0; $i < $chunkSize; $i++) {
+                ProcessNotepads::dispatch($user->id, 1000);
+            }
         }
     }
 }

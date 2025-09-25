@@ -14,6 +14,7 @@ class Notepad extends Model
     protected $fillable = [
         'title',
         'content',
+        'user_id',
     ];
 
     protected $guarded = [];

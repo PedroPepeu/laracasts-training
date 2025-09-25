@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Notepad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotepadController extends Controller
 {
     public function index()
     {
-        $notepads = Notepad::with('user:id,name')->latest()->paginate(7);
+        $notepads = Notepad::with('user')->latest()->paginate(7);
         
         return view('notepad.index', [
             'notepads' => $notepads,
@@ -38,10 +39,10 @@ class NotepadController extends Controller
         Notepad::create([
             'title' => request('title'),
             'content' => request('content'),
-            'user_id' => 1, // auth()->id(),
+            'user_id' => Auth::id(), // auth()->id(),
         ]);
 
-        return redirect('/jobs');
+        return redirect('/notepad');
     }
 
     public function edit()
