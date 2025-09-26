@@ -10,7 +10,10 @@ class NotepadController extends Controller
 {
     public function index()
     {
-        $notepads = Notepad::with('user')->latest()->paginate(7);
+        $notepads = Notepad::with('user')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->cursorPaginate(7);
         
         return view('notepad.index', [
             'notepads' => $notepads,
