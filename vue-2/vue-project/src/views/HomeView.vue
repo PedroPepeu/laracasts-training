@@ -1,14 +1,10 @@
 <script setup>
-    import { useFlash } from '@/composables/useFlash.js';
-
-    let { flash } = useFlash();
 </script>
 
 <template>
     <main>
-        <p>
-            <input type="text" v-model="food" @input="write"></input>
-            <button @click="flash('it works!')">Click me</button>
-        </p>
+        <form>
+            <textarea style="width: 100%; height: 300px;">Hi there</textarea>
+        </form>
     </main>
 </template>

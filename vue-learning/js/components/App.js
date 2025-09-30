@@ -3,6 +3,12 @@ import Assignments from "./Assignments.js"
 export default {
     components: { Assignments },
     template: `
-        <assignments></assignments>
+        <div class="grid gap-6">
+            <assignments></assignments>
+        </div>
     `,
+
+    props: {
+        add: Object,
+    }
 }

@@ -61,18 +61,14 @@
 	</style>
 </head>
 
-<body>
+<body class="h-full grid place-items-center bg-gray-800 text-white">
+	<div id="app"></div>
 
-	<body class="h-full grid place-items-center bg-gray-800 text-white">
-		<div id="app">
-			<app-button :processing="true">Submit</app-button>
+	<script type="module">
+		import App from "./js/components/App.js";
 
-			<script type="module">
-				import App from "./js/components/App.js";
-				Vue.createApp(App).mount('#app');
-			</script>
-		</div>
-	</body>
+		Vue.createApp(App).mount('#app');
+	</script>
 </body>
 
 </html>
