@@ -1,10 +1,11 @@
 <script setup>
+    import TabbableTextarea from '@/components/TabbableTextarea.vue';
 </script>
 
 <template>
     <main>
         <form>
-            <textarea style="width: 100%; height: 300px;">Hi there</textarea>
+            <TabbableTextarea style="width: 100%; height: 300px;" />
         </form>
     </main>
 </template>
