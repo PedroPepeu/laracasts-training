@@ -1,5 +1,5 @@
 <script setup>
-    import TabbableTextarea from '@/components/TabbableTextarea.vue';
+    // study inject
 </script>
 
 <template>
